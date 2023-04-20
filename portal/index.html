@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.2.1/angular-material.min.css" integrity="sha512-2u08Pt2YFGf/JwoWM1O5C0XVesveEKrsEEbhXP61kmxZDOSCH7CNMWQEC7vkXv06mzmZYwHfafjK7FFieL3qlg==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link rel="stylesheet" href="style.css" >
+</head>
+
+
+<body ng-controller="bodyCtrl" ng-app="ngApp" ng-cloak layout="column">
+
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-menu>
+            <md-button class="md-icon-button" ng-click="$mdMenu.open()">
+                <md-icon md-font-library="material-icons">menu</md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item>
+                    <md-button href="#!/home" ng-click="">Home</md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button href="#!/dashboard" ng-click="">Dashboard</md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button href="#!/export" ng-click="">Archivio</md-button>
+                </md-menu-item>
+              </md-menu-content>
+          </md-menu>  
+  
+
+          <div style="margin-right: 10px;">
+            <img src="img/SEA_logo.png" width="40px" height="40px">
+          </div>
+          
+          <h2 flex md-truncate>Sistema people counter</h2>
+          <md-menu>
+            <md-button class="md-icon-button" ng-click="$mdMenu.open()">
+                <md-icon md-font-library="material-icons">account_circle</md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item>
+                    <md-button href="#!/account" ng-click="">My account</md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button href="/.auth/logout" ng-click="">Logout</md-button>
+                </md-menu-item>
+            </md-menu-content>
+          </md-menu>  
+        </div>
+      </md-toolbar>
+
+    <div layout="column" layout-margin ng-view></div>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.2/angular-animate.min.js" integrity="sha512-jZoujmRqSbKvkVDG+hf84/X11/j5TVxwBrcQSKp1W+A/fMxmYzOAVw+YaOf3tWzG/SjEAbam7KqHMORlsdF/eA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-aria/1.8.2/angular-aria.min.js" integrity="sha512-IP/3KOfYYFXQTJVQkBfavKkpvK8u+JD5r2C5vO3Dj3ufl7Xk0SoI0Oh2MXMFcGSAOxK6oZhWbZVWglgvZwAU+w==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.8.2/angular-messages.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.2.1/angular-material.min.js" integrity="sha512-6e0IgtU8ld8CLd5Dcjyj1c9W3YyC/pORD93BnpnkHxXL3x9xtpBcQGGA9zwTOdZ4sKR2Jqfg0TbIhWdde6tAaA==" crossorigin="anonymous"></script>    <!-- Angular Route Library -->
+
+    <!-- MomentJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.32/moment-timezone-with-data-1970-2030.min.js" integrity="sha512-dKwfWm2jkVDE/mHYsro+GYWTJ8VILVamAQgg45crB2DAQKAexOLqmEJd8wFysJ8xB1pVqhJqF+weV8BmjC27vg==" crossorigin="anonymous"></script>
+
+    <!-- App -->
+    <script src="services.js"></script>
+    <script src="directives.js"></script>
+    <script src="controllers.js"></script>
+    <script src="webclient.js"></script>
+     
+</body>
+
+</html>

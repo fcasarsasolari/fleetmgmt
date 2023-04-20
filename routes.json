@@ -1,0 +1,65 @@
+{
+    "routes": [
+      {
+        "route": "/api/authenticated",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/api/aziotcentralproxy",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/api/deviceProxy",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/api/downloadExportFile",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/api/listExportFiles",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/api/devices",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/api/query",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/portal",
+        "allowedRoles": ["user"]
+      },
+      {
+        "route": "/.auth/login/twitter",
+        "statusCode": "404"
+      },
+      {
+        "route": "/.auth/login/facebook",
+        "statusCode": "404"
+      },
+      {
+        "route": "/.auth/login/github",
+        "statusCode": "404"
+      },
+      {
+        "route": "/.auth/login/google_foobar",
+        "statusCode": "404"
+      },
+      {
+        "route": "/logout",
+        "serve": "/.auth/logout"
+      }
+    ],
+    "defaultHeaders": {
+      "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
+    },"platformErrorOverrides": [
+      {
+        "errorType": "Unauthenticated",
+        "statusCode": "302",
+        "serve": "/login/"
+      }
+    ]
+  }

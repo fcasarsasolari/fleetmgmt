@@ -1,0 +1,88 @@
+<div ng-if="(sensors === undefined)">
+    Dati in caricamento
+</div>
+<div ng-if="(sensors.length == 0)">
+   Non ci sono dati per il periodo richiesto
+</div>
+<div ng-if="(sensors.length > 0)">
+<table id="dashboard" style="width:100%; text-align:left">
+   <tr>
+     <th>DeviceId</th>
+     <th>ID Sensore</th>
+     <th style="width:20%">Descrizione</th>
+     <!--th>Genere</th-->
+     <th><md-input-container>
+      <label>Genere</label>
+      <md-select ng-model="genderFilter">
+        <md-option ng-repeat="gender in genders" ng-value="gender">
+          {{gender}}
+        </md-option>
+        <md-option value="all"><em>Tutti</em></md-option>
+      </md-select>
+    </md-input-container></th>
+     <th><md-input-container>
+      <label>Piano</label>
+      <md-select ng-model="levelFilter">
+        <md-option ng-repeat="level in levels" ng-value="level">
+          {{level}}
+        </md-option>
+        <md-option value="all"><em>Tutti</em></md-option>
+      </md-select>
+    </md-input-container></th>
+     <th><md-input-container>
+      <label>Area</label>
+      <md-select ng-model="areaFilter">
+        <md-option ng-repeat="area in areas" ng-value="area">
+          {{area}}
+        </md-option>
+        <md-option value="all"><em>Tutte</em></md-option>
+      </md-select>
+    </md-input-container></th>
+    <th><md-input-container>
+      <label>Terminal</label>
+      <md-select ng-model="terminalFilter">
+        <md-option ng-repeat="terminal in terminals" ng-value="terminal">
+          {{terminal}}
+        </md-option>
+        <md-option value="all"><em>Tutti</em></md-option>
+      </md-select>
+    </md-input-container></th>
+     <th>Stato Zona</th>
+     <th>Stato Sensore</th>
+     <th><md-icon md-font-library="material-icons">people_alt</md-icon>Occupazione</th>
+     <th><md-icon md-font-library="material-icons">directions_walk</md-icon>5m</th>
+     <th><md-icon md-font-library="material-icons">directions_walk</md-icon>15m</th>
+     <th><md-icon md-font-library="material-icons">directions_walk</md-icon>60m</th>
+     <th><md-icon md-font-library="material-icons">directions_walk</md-icon>24h</th>
+   </tr>
+   <tr ng-repeat="sensor in sensors  track by $index" ng-style="sensor.enrichment.iotcentralZone.counter >= sensor.enrichment.iotcentralZone.limit ? {'background-color': 'yellow'} : {}" ng-show="(areaFilter == 'all' || sensor.enrichment.device.area == areaFilter) && (levelFilter == 'all' || sensor.enrichment.device.level == levelFilter) && (genderFilter == 'all' || sensor.enrichment.zone.gender == genderFilter) && (terminalFilter == 'all' || sensor.enrichment.device.terminal == terminalFilter)">
+     <td><a href="https://solari-sea-hc.azureiotcentral.com/devices/details/{{sensor.enrichment.zone.deviceId}}" target="_blank">{{sensor.enrichment.zone.deviceId}}</a></td>
+     <td>{{sensor.data.sensorId.split("-")[2]}}</td>
+     <td>{{sensor.enrichment.device.description}}</td>
+     <td>{{sensor.enrichment.zone.gender}}</td>
+     <td>{{sensor.enrichment.device.level}}</td>
+     <td>{{sensor.enrichment.device.area}}</td>
+     <td>{{sensor.enrichment.device.terminal}}</td>
+
+     <td ng-switch="sensor.enrichment.iotcentralZone.state" >
+      <span ng-switch-when="INS">APERTO</span>
+      <span ng-switch-when="OOS">CHIUSO</span>
+      <span ng-switch-when="CLN">PULIZIE</span>
+      <span ng-switch-when="NUL">ERRORE</span>
+      <span ng-switch-default>{{sensor.enrichment.iotcentralZone.state}}</span>
+     </td>
+     <td>{{sensor.enrichment.iotcentralZone.status}}</td>
+     <td>{{sensor.enrichment.iotcentralZone.counter}}/{{sensor.enrichment.iotcentralZone.limit}}</td>
+     <!--td>{{sensor.enrichment.iotcentralZone.lastReset}}</td-->
+     <!--td>{{sensor.enrichment.iotcentralZone.transactionsIn}}</td-->
+     <td>{{sensor.raw.telemetry["zone"+sensor.enrichment.zone.iotCentralZone+"TransitsLast5Minutes"]}}</td>
+     <td>{{sensor.raw.telemetry["zone"+sensor.enrichment.zone.iotCentralZone+"TransitsLast15Minutes"]}}</td>
+     <td>{{sensor.raw.telemetry["zone"+sensor.enrichment.zone.iotCentralZone+"TransitsLast60Minutes"]}}</td>
+     <td>{{sensor.raw.telemetry["zone"+sensor.enrichment.zone.iotCentralZone+"TransitsLast24Hours"]}}</td>
+     <!--td>{{sensor.data.enqueuedTime}}</td-->
+   </tr>
+  </table>
+  <br>
+  Dati aggiornati alle: {{moment}} 
+</div>
+

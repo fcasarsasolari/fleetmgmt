@@ -1,0 +1,19 @@
+
+<div layout="row">
+    <div flex="">
+        <h3>Sezioni disponibili</h3>
+        <div layout="column">
+            <div flex="" ng-repeat="ym in yearmo">
+                <md-button class="md-primary" ng-click="sel(ym)">{{ym}}</md-button>
+            </div>
+          </div>
+    </div>
+    <div flex="">
+        <h3>Sezione {{selected}}</h3>
+        <div layout="column">
+            <div flex="" ng-repeat="file in files | filter:selected">
+                <md-button class="md-primary" href="/api/downloadExportFile?file={{file}}">{{file}}</md-button>
+            </div>
+          </div>
+    </div>
+  </div>
